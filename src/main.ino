@@ -12,7 +12,7 @@
 L298N motor1(EN1, IN1, IN2);
 L298N motor2(EN2, IN3, IN4);
 // initial speed
-unsigned short theSpeed = 255;
+byte theSpeed = 255;
 int PIN_RECV = 8;
 IRrecv irrecv(PIN_RECV);
 decode_results results;
@@ -54,18 +54,19 @@ void loop() {
       motor1.stop();
       motor2.stop();
       break;
-    case 1:
-      Serial.println("1");
+    case 16754775:
+      Serial.println("+");
       theSpeed++;
       break;
-    case 2:
-      Serial.println("2");
+    case 16769055:
+      Serial.println("-");
       theSpeed--;
       break;
     }
     motor1.setSpeed(theSpeed);
     motor2.setSpeed(theSpeed);
-     Serial.println(results.value);
+    Serial.println(theSpeed);
+    Serial.println(results.value);
     irrecv.resume();
   }
 }
